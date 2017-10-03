@@ -1,2 +1,11 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+body {
+  text-align: center;
+}
+
+#pokemon-img {
+  height: 40px;
+  width: 40px;
+}

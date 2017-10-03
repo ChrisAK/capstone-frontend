@@ -1,6 +1,8 @@
 'use strict'
 
 const app = require('./app')
+const api = require('./api')
+const logic = require('./logic')
 
 const signUpSuccess = (data) => {
   console.log(data)
@@ -26,8 +28,10 @@ const signInSuccess = (data) => {
   $('#sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#sign-in-error').addClass('hidden')
+  $('#create-team').toggleClass('hidden')
   $('#sign-in-email').val('')
   $('#sign-in-password').val('')
+
 }
 
 const signInError = (error) => {
@@ -41,6 +45,7 @@ const signOutSuccess = () => {
   console.log(app)
   $('#sign-out').addClass('hidden')
   $('#sign-up').removeClass('hidden')
+  $('#create-team').toggleClass('hidden')
 }
 
 const changePasswordSuccess = () => {
@@ -80,6 +85,23 @@ const showChngPwd = () => {
   $('#change-password').toggleClass('hidden')
 }
 
+const getPokemonSuccess = (data) => {
+  console.table(data.pokemons)
+  console.log(data.pokemons.length)
+  logic.loopPokemon(data)
+}
+
+const getPokemonFailure = (error) => {
+  console.error(error)
+}
+
+const createTeamSuccess = (data) => {
+  console.log(data)
+  api.getPokemon()
+    .done(getPokemonSuccess)
+    .fail(getPokemonFailure)
+}
+
 module.exports = {
   signUpSuccess,
   signUpError,
@@ -91,5 +113,6 @@ module.exports = {
   failure,
   hideSignIn,
   hideSignUp,
-  showChngPwd
+  showChngPwd,
+  createTeamSuccess
 }

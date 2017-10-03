@@ -36,6 +36,18 @@ const onChangePassword = function (event) {
     .fail(ui.changePasswordError)
 }
 
+const onCreateTeam = function (event) {
+  event.preventDefault()
+  console.log(event)
+  const data = getFormFields(event.target)
+  const teamName = data.team.name
+  // const teamName = $('#create-team-name').val()
+  // console.log(teamName)
+  api.createTeam(teamName)
+    .done(ui.createTeamSuccess)
+    .fail(ui.failure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -44,6 +56,7 @@ const addHandlers = () => {
   $('#oldUser').on('click', ui.hideSignUp)
   $('#newUser').on('click', ui.hideSignIn)
   $('#chngPwd').on('click', ui.showChngPwd)
+  $('#create-team').on('submit', onCreateTeam)
 }
 
 module.exports = {

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Example</title>
+  <title>Pokemon Team Planner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Do not add `link` tags-->
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+  <!-- AUTH STUFF -->
   <form id="sign-in" class="hidden">
     <div class="form-group">
       <h3 class="legend">Sign in!</h3>
@@ -81,6 +81,35 @@
       <p class="hidden" id="change-password-failure">Incorrect Info</p>
     </div>
   </form>
+
+  <!-- CREATE TEAM -->
+  <form id="create-team" class="hidden">
+    <div class="form-group">
+      <h3 class="legend">Create Team Name</h3>
+      <label>Name:</label>
+      <input type="text" name="team[name]" value="" placeholder="Team Name" id="create-team-name">
+    </div>
+    <div class="form-group">
+      <input type="submit" name="submit" value="Create" class="btn btn-default">
+      <p class="hidden" id="change-password-success">Team Already Exists</p>
+    </div>
+  </form>
+
+  <!-- SHOW TEAM BUILDER -->
+  <div class="team-builder">
+
+  </div>
+
+  <!-- LIST POKEMON   -->
+  <div id="pokemon-list">
+    <div class="pokemon-container">
+      <div class="container">
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

@@ -41,9 +41,37 @@ const changePassword = function (data) {
   })
 }
 
+const getPokemon = function () {
+  return $.ajax({
+    method: 'GET',
+    url: app.host + '/pokemons',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  })
+}
+
+const createTeam = function (teamName) {
+  return $.ajax({
+    method: 'POST',
+    url: app.host + '/teams',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    },
+    data: {
+      'team': {
+        'name': teamName,
+        'user_id': app.user.id
+      }
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePassword
+  changePassword,
+  getPokemon,
+  createTeam
 }
