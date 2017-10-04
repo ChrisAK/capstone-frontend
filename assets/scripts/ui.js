@@ -28,10 +28,9 @@ const signInSuccess = (data) => {
   $('#sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#sign-in-error').addClass('hidden')
-  $('#create-team').toggleClass('hidden')
   $('#sign-in-email').val('')
   $('#sign-in-password').val('')
-
+  $('#buttons-for-stuff').toggleClass('hidden')
 }
 
 const signInError = (error) => {
@@ -45,7 +44,7 @@ const signOutSuccess = () => {
   console.log(app)
   $('#sign-out').addClass('hidden')
   $('#sign-up').removeClass('hidden')
-  $('#create-team').toggleClass('hidden')
+  $('#buttons-for-stuff').toggleClass('hidden')
 }
 
 const changePasswordSuccess = () => {
@@ -102,6 +101,25 @@ const createTeamSuccess = (data) => {
     .fail(getPokemonFailure)
 }
 
+const getTeamsSuccess = (data) => {
+  console.table(data.teams)
+  logic.loopTeams(data)
+}
+
+const showCrtTeam = () => {
+  $('#create-team').toggleClass('hidden')
+}
+
+const getPokemonOnTeamSuccess = (data) => {
+  console.table(data)
+  const pokemonTeams = data.pokemon_teams
+  console.log(pokemonTeams[1].team.name)
+  for (let i = 0; i < pokemonTeams.length; i++) {
+    const team = pokemonTeams[i]
+    console.log(team.pokemon)
+  }
+}
+
 module.exports = {
   signUpSuccess,
   signUpError,
@@ -114,5 +132,8 @@ module.exports = {
   hideSignIn,
   hideSignUp,
   showChngPwd,
-  createTeamSuccess
+  createTeamSuccess,
+  showCrtTeam,
+  getTeamsSuccess,
+  getPokemonOnTeamSuccess
 }

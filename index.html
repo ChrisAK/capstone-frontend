@@ -82,6 +82,17 @@
     </div>
   </form>
 
+  <!-- BUTTONS! -->
+  <form id="buttons-for-stuff" class="hidden">
+    <div class="form-group">
+      <input type="button" value="Create a Team" class="btn btn-default" id="crtTm">
+    </div>
+    <div class="form-group">
+      <input type="button" value="My Teams" class="btn btn-default" id="getTm">
+    </div>
+  </form>
+
+
   <!-- CREATE TEAM -->
   <form id="create-team" class="hidden">
     <div class="form-group">
@@ -91,13 +102,31 @@
     </div>
     <div class="form-group">
       <input type="submit" name="submit" value="Create" class="btn btn-default">
-      <p class="hidden" id="change-password-success">Team Already Exists</p>
+      <p class="hidden" id="create-team-failure">Team Already Exists</p>
     </div>
   </form>
 
+  <!-- MY TEAMS! -->
+  <div id="teams-list">
+    <div class="teams-container">
+      <div class="container">
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SHOW TEAM BUILDER -->
   <div class="team-builder">
-
+    <ul class="picked list-unstyled">
+      <li class="free"></li>
+      <li class="free"></li>
+      <li class="free"></li>
+      <li class="free"></li>
+      <li class="free"></li>
+      <li class="free"></li>
+    </ul>
   </div>
 
   <!-- LIST POKEMON   -->

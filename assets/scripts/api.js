@@ -67,11 +67,35 @@ const createTeam = function (teamName) {
   })
 }
 
+const getTeams = function () {
+  return $.ajax({
+    method: 'GET',
+    url: app.host + '/users/' + app.user.id + '/teams',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  })
+}
+
+const getPokemonOnTeam = function (data) {
+  console.log('Here')
+  console.log(data)
+  return $.ajax({
+    method: 'GET',
+    url: app.host + '/teams/' + data + '/pokemon_teams',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
   getPokemon,
-  createTeam
+  createTeam,
+  getTeams,
+  getPokemonOnTeam
 }

@@ -1,5 +1,6 @@
 const ui = require('./ui')
 const api = require('./api')
+const logic = require('./logic')
 const getFormFields = require('../../lib/get-form-fields.js')
 
 const onSignUp = function (event) {
@@ -48,6 +49,20 @@ const onCreateTeam = function (event) {
     .fail(ui.failure)
 }
 
+const onGetTeams = function (event) {
+  event.preventDefault()
+  api.getTeams()
+    .done(ui.getTeamsSuccess)
+    .fail(ui.failure)
+}
+
+const onGetPokemonOnTeam = function (id) {
+  console.log(id)
+  api.getPokemonOnTeam(id)
+    .done(ui.getPokemonOnTeamSuccess)
+    .fail(ui.failure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -57,6 +72,12 @@ const addHandlers = () => {
   $('#newUser').on('click', ui.hideSignIn)
   $('#chngPwd').on('click', ui.showChngPwd)
   $('#create-team').on('submit', onCreateTeam)
+  $('#crtTm').on('click', ui.showCrtTeam)
+  $('#getTm').on('click', onGetTeams)
+  $(document).on('click', '.get-pokemon-on-team', function () {
+    const id = $(this).attr('id')
+    onGetPokemonOnTeam(id)
+  })
 }
 
 module.exports = {
