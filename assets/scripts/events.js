@@ -49,6 +49,12 @@ const onCreateTeam = function (event) {
     .fail(ui.failure)
 }
 
+const onDeleteTeam = function (id) {
+  api.deleteTeam(id)
+    .done(ui.deleteTeamSuccess)
+    .fail(ui.failure)
+}
+
 const onGetTeams = function (event) {
   event.preventDefault()
   api.getTeams()
@@ -61,6 +67,12 @@ const onGetPokemonOnTeam = function (id) {
   api.getPokemonOnTeam(id)
     .done(ui.getPokemonOnTeamSuccess)
     .fail(ui.failure)
+}
+
+const onAddPokemonToTeam = function (teamId, pokemonId) {
+  api.addPokemonToTeam(teamId, pokemonId)
+    .then(ui.addPokemonToTeamSuccess)
+    .fail(ui.addPokemonToTeamFailure)
 }
 
 const addHandlers = () => {
@@ -77,6 +89,17 @@ const addHandlers = () => {
   $(document).on('click', '.get-pokemon-on-team', function () {
     const id = $(this).attr('id')
     onGetPokemonOnTeam(id)
+  })
+  $(document).on('click', '.add-pokemon-to-team', function () {
+    const pokemonId = $(this).attr('id')
+    const teamId = $('#team-name').find('h2').attr('id')
+    console.log(pokemonId)
+    console.log(teamId)
+    onAddPokemonToTeam(teamId, pokemonId)
+  })
+  $(document).on('click', '.delete-team', function () {
+    const id = $(this).attr('id')
+    onDeleteTeam(id)
   })
 }
 

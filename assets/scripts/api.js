@@ -78,11 +78,35 @@ const getTeams = function () {
 }
 
 const getPokemonOnTeam = function (data) {
-  console.log('Here')
-  console.log(data)
   return $.ajax({
     method: 'GET',
     url: app.host + '/teams/' + data + '/pokemon_teams',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  })
+}
+
+const addPokemonToTeam = function (teamId, pokemonId) {
+  return $.ajax({
+    method: 'POST',
+    url: app.host + '/pokemon_teams',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    },
+    data: {
+      'pokemon_team': {
+        'team_id': teamId,
+        'pokemon_id': pokemonId
+      }
+    }
+  })
+}
+
+const deleteTeam = function (id) {
+  return $.ajax({
+    method: 'DELETE',
+    url: app.host + '/users/' + app.user.id + '/teams/' + id,
     headers: {
       Authorization: 'Token token=' + app.user.token
     }
@@ -97,5 +121,7 @@ module.exports = {
   getPokemon,
   createTeam,
   getTeams,
-  getPokemonOnTeam
+  getPokemonOnTeam,
+  addPokemonToTeam,
+  deleteTeam
 }

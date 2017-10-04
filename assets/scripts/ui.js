@@ -85,8 +85,6 @@ const showChngPwd = () => {
 }
 
 const getPokemonSuccess = (data) => {
-  console.table(data.pokemons)
-  console.log(data.pokemons.length)
   logic.loopPokemon(data)
 }
 
@@ -96,6 +94,10 @@ const getPokemonFailure = (error) => {
 
 const createTeamSuccess = (data) => {
   console.log(data)
+  console.log(data.team)
+  console.log(data.team.name)
+  $('#create-team').toggleClass('hidden')
+  logic.printTeamName(data)
   api.getPokemon()
     .done(getPokemonSuccess)
     .fail(getPokemonFailure)
@@ -104,20 +106,44 @@ const createTeamSuccess = (data) => {
 const getTeamsSuccess = (data) => {
   console.table(data.teams)
   logic.loopTeams(data)
+  $('#create-team').addClass('hidden')
+  $('#team-name').empty()
+  $('#pokemon-list').find('.row').empty()
 }
 
 const showCrtTeam = () => {
   $('#create-team').toggleClass('hidden')
+  $('#pokemon-team-list').find('.row').empty()
+  $('#teams-list').find('.row').empty()
+  $('#team-name').empty()
 }
 
 const getPokemonOnTeamSuccess = (data) => {
   console.table(data)
   const pokemonTeams = data.pokemon_teams
-  console.log(pokemonTeams[1].team.name)
-  for (let i = 0; i < pokemonTeams.length; i++) {
-    const team = pokemonTeams[i]
-    console.log(team.pokemon)
+  console.log(pokemonTeams.length)
+  $('#pokemon-team-list').find('.row').empty()
+  if (pokemonTeams.length > 0) {
+    logic.loopPokemonOnTeam(pokemonTeams)
+  } else {
+    logic.noPokemonError()
   }
+}
+
+const deleteTeamSuccess = () => {
+  console.log('Deleted Successfully')
+  $('#pokemon-team-list').find('.row').empty()
+  api.getTeams()
+    .done(getTeamsSuccess)
+    .fail(failure)
+}
+
+const addPokemonToTeamSuccess = (data) => {
+  console.log(data)
+}
+
+const addPokemonToTeamFailure = (error) => {
+  console.error(error)
 }
 
 module.exports = {
@@ -135,5 +161,8 @@ module.exports = {
   createTeamSuccess,
   showCrtTeam,
   getTeamsSuccess,
-  getPokemonOnTeamSuccess
+  getPokemonOnTeamSuccess,
+  deleteTeamSuccess,
+  addPokemonToTeamFailure,
+  addPokemonToTeamSuccess
 }
