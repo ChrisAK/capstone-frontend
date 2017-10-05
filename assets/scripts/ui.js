@@ -5,7 +5,7 @@ const api = require('./api')
 const logic = require('./logic')
 
 const signUpSuccess = (data) => {
-  console.log(data)
+  // console.log(data)
   $('#sign-up').addClass('hidden')
   $('#sign-in').removeClass('hidden')
   $('#sign-up-error').addClass('hidden')
@@ -24,7 +24,7 @@ const signUpError = (error) => {
 
 const signInSuccess = (data) => {
   app.user = data.user
-  console.log(app)
+  // console.log(app)
   $('#sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#sign-in-error').addClass('hidden')
@@ -41,7 +41,7 @@ const signInError = (error) => {
 
 const signOutSuccess = () => {
   app.user = null
-  console.log(app)
+  // console.log(app)
   $('#sign-out').addClass('hidden')
   $('#sign-up').removeClass('hidden')
   $('#buttons-for-stuff').toggleClass('hidden')
@@ -55,7 +55,7 @@ const signOutSuccess = () => {
 }
 
 const changePasswordSuccess = () => {
-  console.log(app)
+  // console.log(app)
   $('.pswd-change-message').removeClass('hidden')
   $('.changed').removeClass('hidden')
   $('#change-password-failure').addClass('hidden')
@@ -101,9 +101,9 @@ const getPokemonFailure = (error) => {
 }
 
 const createTeamSuccess = (data) => {
-  console.log(data)
-  console.log(data.team)
-  console.log(data.team.name)
+  // console.log(data)
+  // console.log(data.team)
+  // console.log(data.team.name)
   $('#create-team').toggleClass('hidden')
   $('#create-team-name').val('')
   logic.printTeamName(data)
@@ -113,7 +113,7 @@ const createTeamSuccess = (data) => {
 }
 
 const getTeamsSuccess = (data) => {
-  console.table(data.teams)
+  // console.table(data.teams)
   logic.loopTeams(data)
   $('#create-team').addClass('hidden')
   $('#team-name').empty()
@@ -136,9 +136,9 @@ const showCrtTeam = () => {
 }
 
 const getPokemonOnTeamSuccess = (data) => {
-  console.table(data)
+  // console.table(data)
   const pokemonTeams = data.pokemon_teams
-  console.log(pokemonTeams.length)
+  // console.log(pokemonTeams.length)
   $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   if (pokemonTeams.length > 0) {
     logic.loopPokemonOnTeam(pokemonTeams)
@@ -148,7 +148,7 @@ const getPokemonOnTeamSuccess = (data) => {
 }
 
 const deleteTeamSuccess = () => {
-  console.log('Deleted Successfully')
+  // console.log('Deleted Successfully')
   $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   api.getTeams()
     .done(getTeamsSuccess)
@@ -156,7 +156,7 @@ const deleteTeamSuccess = () => {
 }
 
 const addPokemonToTeamSuccess = (data) => {
-  console.log(data)
+  // console.log(data)
   const teamId = data.pokemon_team.team.id
   $('#team-builder').removeClass('hidden')
   api.getPokemonOnTeam(teamId)
@@ -169,7 +169,7 @@ const addPokemonToTeamFailure = (error) => {
 }
 
 const editTeamNameSuccess = (data) => {
-  console.log(data)
+  // console.log(data)
   $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   api.getTeams()
     .done(getTeamsSuccess)

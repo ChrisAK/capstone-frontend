@@ -5,9 +5,9 @@ const getFormFields = require('../../lib/get-form-fields.js')
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log(event)
+  // console.log(event)
   const data = getFormFields(event.target)
-  console.log(data)
+  // console.log(data)
   api.signUp(data)
     .done(ui.signUpSuccess)
     .fail(ui.signUpError)
@@ -39,7 +39,7 @@ const onChangePassword = function (event) {
 
 const onCreateTeam = function (event) {
   event.preventDefault()
-  console.log(event)
+  // console.log(event)
   const data = getFormFields(event.target)
   const teamName = data.team.name
   // const teamName = $('#create-team-name').val()
