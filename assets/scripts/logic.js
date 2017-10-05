@@ -10,7 +10,7 @@ const loopPokemon = function (data) {
           '<h6 class="pokemon-number">' + pokemon[i].number + '</h6>' +
           '<h4 class="pokemon-name">' + pokemon[i].name + '</h4>' +
           '<p class="pokemon-types">' + pokemon[i].type1 + '</p>' +
-          '<input type="button" name="submit" value="Add ' + pokemon[i].name + '" class="btn-xs btn-success add-pokemon-to-team" id="' + pokemon[i].id + '">' +
+          '<input type="button" name="submit" value="Add ' + pokemon[i].name + '" class="btn-xs btn-default add-pokemon-to-team" id="' + pokemon[i].id + '">' +
         '</div>'
       )
     } else {
@@ -20,7 +20,7 @@ const loopPokemon = function (data) {
           '<h6 class="pokemon-number">' + pokemon[i].number + '</h6>' +
           '<h4 class="pokemon-name">' + pokemon[i].name + '</h4>' +
           '<p class="pokemon-types">' + pokemon[i].type1 + '/' + pokemon[i].type2 + '</p>' +
-          '<input type="button" name="submit" value="Add ' + pokemon[i].name + '" class="btn-xs btn-success add-pokemon-to-team" id="' + pokemon[i].id + '">' +
+          '<input type="button" name="submit" value="Add ' + pokemon[i].name + '" class="btn-xs btn-default add-pokemon-to-team" id="' + pokemon[i].id + '">' +
         '</div>'
       )
     }
@@ -53,8 +53,8 @@ const loopTeams = function (data) {
 }
 
 const loopPokemonOnTeam = function (pokemonTeams) {
-  $('#pokemon-team-list').find('.row').empty()
-  $('#pokemon-team-list').find('.row').append(
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').append(
     '<div class="team-name-header">' +
       '<h4>' + pokemonTeams[0].team.name + '</h4>' +
     '</div>'
@@ -62,17 +62,18 @@ const loopPokemonOnTeam = function (pokemonTeams) {
   for (let i = 0; i < pokemonTeams.length; i++) {
     const team = pokemonTeams[i]
     console.log(team.pokemon.name)
-    $('#pokemon-team-list').find('.row').append(
-      '<div class="team-pokemon-names">' +
-        '<h5>' + team.pokemon.name + '</h5>' +
-      '</div>'
+    $('#pokemon-team-list').find('.pokemon-team-roster').append(
+      '<li class="list-inline-item" id="' + team.pokemon.id + '">' +
+        '<img class="roster-image" src="' + team.pokemon.image + '">' +
+        '<h4>' + team.pokemon.name + '</h4>' +
+      '</li>'
     )
   }
 }
 
 const noPokemonError = function () {
-  $('#pokemon-team-list').find('.row').empty()
-  $('#pokemon-team-list').find('.row').append(
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').append(
     '<div class="no-pokemon-error">' +
       '<h4>Sorry, there are no pokemon in this team!</h4>' +
     '</div>'
@@ -86,11 +87,28 @@ const printTeamName = function (data) {
   )
 }
 
+const loopCurrentRoster = function (data) {
+  console.log(data.pokemon_teams)
+  const pokemonTeams = data.pokemon_teams
+  $('#team-builder').find('.roster').empty()
+  for (let i = 0; i < pokemonTeams.length; i++) {
+    const team = pokemonTeams[i]
+    console.log(team.pokemon.name)
+    $('#team-builder').find('.roster').append(
+      '<li class="list-inline-item" id="' + team.pokemon.id + '">' +
+        '<img class="roster-image" src="' + team.pokemon.image + '">' +
+        '<h4>' + team.pokemon.name + '</h4>' +
+      '</li>'
+    )
+  }
+}
+
 module.exports = {
   loopPokemon,
   addPokemon,
   loopTeams,
   loopPokemonOnTeam,
   noPokemonError,
-  printTeamName
+  printTeamName,
+  loopCurrentRoster
 }

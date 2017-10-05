@@ -70,9 +70,13 @@ const onGetPokemonOnTeam = function (id) {
 }
 
 const onAddPokemonToTeam = function (teamId, pokemonId) {
-  api.addPokemonToTeam(teamId, pokemonId)
-    .then(ui.addPokemonToTeamSuccess)
-    .fail(ui.addPokemonToTeamFailure)
+  if ($('.roster').children().length < 6) {
+    api.addPokemonToTeam(teamId, pokemonId)
+      .then(ui.addPokemonToTeamSuccess)
+      .fail(ui.addPokemonToTeamFailure)
+  } else {
+    ui.tooManyPokemon()
+  }
 }
 
 const onEditTeamName = function (data, id) {

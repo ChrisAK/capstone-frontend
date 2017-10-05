@@ -14,6 +14,9 @@
 </head>
 
 <body>
+  <header>
+    <img src="https://raw.githubusercontent.com/ChrisAK/capstone-frontend/master/assets/images/pokemon-banner.png" alt="pokemon banner">
+  </header>
   <!-- AUTH STUFF -->
   <form id="sign-in" class="hidden">
     <div class="form-group">
@@ -106,6 +109,17 @@
     </div>
   </form>
 
+  <!-- POKEMON IN SELECTED TEAM! -->
+  <div id="pokemon-team-list">
+    <div class="pokemon-team-container">
+      <div class="container">
+        <ul class="pokemon-team-roster list-inline">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <!-- MY TEAMS! -->
   <div id="teams-list">
     <div class="teams-container">
@@ -117,35 +131,26 @@
     </div>
   </div>
 
-  <!-- POKEMON IN SELECTED TEAM! -->
-  <div id="pokemon-team-list">
-    <div class="pokemon-team-container">
-      <div class="container">
-        <div class="row">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- TEAM NAME HOLDER -->
   <div id="team-name">
   </div>
-
+  <p class="hidden" id="too-many-pokemon">Only 6 pokemon allowed on a team!</p>
+<br>
+<br>
   <!-- SHOW TEAM BUILDER -->
   <div id="team-builder">
     <div class="team-builder-container">
       <div class="container">
-        <div class="row">
+        <ul class="roster list-inline">
 
-        </div>
+        </ul>
       </div>
     </div>
   </div>
 
   <!-- LIST POKEMON   -->
   <div id="pokemon-list">
-    <div class="pokemon-container">
+    <div class="pokemon-container hidden">
       <div class="container">
         <div class="row">
 

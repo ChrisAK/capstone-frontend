@@ -45,6 +45,12 @@ const signOutSuccess = () => {
   $('#sign-out').addClass('hidden')
   $('#sign-up').removeClass('hidden')
   $('#buttons-for-stuff').toggleClass('hidden')
+  $('#team-builder').find('.roster').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
+  $('#team-name').empty()
+  $('#pokemon-list').find('.row').empty()
+  $('.pokemon-container').addClass('hidden')
+  $('#teams-list').find('.row').empty()
 }
 
 const changePasswordSuccess = () => {
@@ -85,6 +91,7 @@ const showChngPwd = () => {
 }
 
 const getPokemonSuccess = (data) => {
+  $('.pokemon-container').removeClass('hidden')
   logic.loopPokemon(data)
 }
 
@@ -97,6 +104,7 @@ const createTeamSuccess = (data) => {
   console.log(data.team)
   console.log(data.team.name)
   $('#create-team').toggleClass('hidden')
+  $('#create-team-name').val('')
   logic.printTeamName(data)
   api.getPokemon()
     .done(getPokemonSuccess)
@@ -108,21 +116,27 @@ const getTeamsSuccess = (data) => {
   logic.loopTeams(data)
   $('#create-team').addClass('hidden')
   $('#team-name').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
+  $('#team-builder').find('.roster').empty()
   $('#pokemon-list').find('.row').empty()
+  $('.pokemon-container').addClass('hidden')
 }
 
 const showCrtTeam = () => {
   $('#create-team').toggleClass('hidden')
-  $('#pokemon-team-list').find('.row').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   $('#teams-list').find('.row').empty()
   $('#team-name').empty()
+  $('#team-builder').find('.roster').empty()
+  $('#pokemon-list').find('.row').empty()
+  $('.pokemon-container').addClass('hidden')
 }
 
 const getPokemonOnTeamSuccess = (data) => {
   console.table(data)
   const pokemonTeams = data.pokemon_teams
   console.log(pokemonTeams.length)
-  $('#pokemon-team-list').find('.row').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   if (pokemonTeams.length > 0) {
     logic.loopPokemonOnTeam(pokemonTeams)
   } else {
@@ -132,7 +146,7 @@ const getPokemonOnTeamSuccess = (data) => {
 
 const deleteTeamSuccess = () => {
   console.log('Deleted Successfully')
-  $('#pokemon-team-list').find('.row').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   api.getTeams()
     .done(getTeamsSuccess)
     .fail(failure)
@@ -140,6 +154,10 @@ const deleteTeamSuccess = () => {
 
 const addPokemonToTeamSuccess = (data) => {
   console.log(data)
+  const teamId = data.pokemon_team.team.id
+  api.getPokemonOnTeam(teamId)
+    .done(logic.loopCurrentRoster)
+    .fail(failure)
 }
 
 const addPokemonToTeamFailure = (error) => {
@@ -148,10 +166,16 @@ const addPokemonToTeamFailure = (error) => {
 
 const editTeamNameSuccess = (data) => {
   console.log(data)
-  $('#pokemon-team-list').find('.row').empty()
+  $('#pokemon-team-list').find('.pokemon-team-roster').empty()
   api.getTeams()
     .done(getTeamsSuccess)
     .fail(failure)
+}
+
+const tooManyPokemon = () => {
+  $('#too-many-pokemon').removeClass('hidden').delay(1500).queue(function () {
+    $(this).addClass('hidden').dequeue()
+  })
 }
 
 module.exports = {
@@ -173,5 +197,6 @@ module.exports = {
   deleteTeamSuccess,
   addPokemonToTeamFailure,
   addPokemonToTeamSuccess,
-  editTeamNameSuccess
+  editTeamNameSuccess,
+  tooManyPokemon
 }
