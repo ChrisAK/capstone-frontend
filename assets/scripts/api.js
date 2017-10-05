@@ -113,6 +113,21 @@ const deleteTeam = function (id) {
   })
 }
 
+const editTeamName = function (data, id) {
+  return $.ajax({
+    method: 'PATCH',
+    url: app.host + '/users/' + app.user.id + '/teams/' + id,
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    },
+    data: {
+      'team': {
+        'name': data
+      }
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -123,5 +138,6 @@ module.exports = {
   getTeams,
   getPokemonOnTeam,
   addPokemonToTeam,
-  deleteTeam
+  deleteTeam,
+  editTeamName
 }

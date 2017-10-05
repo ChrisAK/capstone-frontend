@@ -40,6 +40,13 @@ const loopTeams = function (data) {
         '<h4 class="team-name">' + teams[i].name + '</h4>' +
         '<input type="button" name="submit" value="Get Team" class="btn btn-default get-pokemon-on-team" id="' + teams[i].id + '">' +
         '<input type="button" name="submit" value="Delete Team" class="btn btn-default delete-team" id="' + teams[i].id + '">' +
+        '<form class="change-team-name-form" id="' + teams[i].id + '">' +
+          '<div class="form-group">' +
+            '<label>Edit Name</label>' +
+            '<input type="text" name="team[name]" value="" placeholder="New Name" id="change-team-new-name">' +
+            '<input type="submit" name="submit" value="Edit!" class="btn btn-default" id="' + teams[i].id + '">' +
+          '</div>' +
+        '</form>' +
       '</div>'
     )
   }

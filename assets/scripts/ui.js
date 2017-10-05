@@ -146,6 +146,14 @@ const addPokemonToTeamFailure = (error) => {
   console.error(error)
 }
 
+const editTeamNameSuccess = (data) => {
+  console.log(data)
+  $('#pokemon-team-list').find('.row').empty()
+  api.getTeams()
+    .done(getTeamsSuccess)
+    .fail(failure)
+}
+
 module.exports = {
   signUpSuccess,
   signUpError,
@@ -164,5 +172,6 @@ module.exports = {
   getPokemonOnTeamSuccess,
   deleteTeamSuccess,
   addPokemonToTeamFailure,
-  addPokemonToTeamSuccess
+  addPokemonToTeamSuccess,
+  editTeamNameSuccess
 }

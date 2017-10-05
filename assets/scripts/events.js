@@ -75,6 +75,12 @@ const onAddPokemonToTeam = function (teamId, pokemonId) {
     .fail(ui.addPokemonToTeamFailure)
 }
 
+const onEditTeamName = function (data, id) {
+  api.editTeamName(data, id)
+    .then(ui.editTeamNameSuccess)
+    .fail(ui.failure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -100,6 +106,13 @@ const addHandlers = () => {
   $(document).on('click', '.delete-team', function () {
     const id = $(this).attr('id')
     onDeleteTeam(id)
+  })
+  $(document).on('submit', '.change-team-name-form', function (event) {
+    event.preventDefault()
+    const data = getFormFields(event.target)
+    const id = $(this).attr('id')
+    console.log(data.team.name)
+    onEditTeamName(data.team.name, id)
   })
 }
 
