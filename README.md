@@ -4,7 +4,7 @@
 
 ## Welcome to my Project!
 
-![alt text](https://imgur.com/a/X71jF "capstone screenshot")
+[capstone screenshot](https://i.imgur.com/HUDVr9n.png)
 
 This Planner was made to allow people to plan what they wanted their teams to be when playing through a pokemon game. I know that I like to go back and play through the games again and I would definitely like a way to plan out my run before I do it.
 
