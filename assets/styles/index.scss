@@ -24,11 +24,15 @@ header img {
   margin-top: 10px;
   width: 85%;
   align-items: center;
-  padding: 50px;
+  // padding: 50px;
 
   > .row {
-    // margin: 10px;
+    margin: 10px;
     width: 85%;
+  }
+
+  > .container {
+    width: inherit;
   }
 }
 
