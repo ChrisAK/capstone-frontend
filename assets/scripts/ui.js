@@ -51,6 +51,7 @@ const signOutSuccess = () => {
   $('#pokemon-list').find('.row').empty()
   $('.pokemon-container').addClass('hidden')
   $('#teams-list').find('.row').empty()
+  $('#team-builder').addClass('hidden')
 }
 
 const changePasswordSuccess = () => {
@@ -120,6 +121,7 @@ const getTeamsSuccess = (data) => {
   $('#team-builder').find('.roster').empty()
   $('#pokemon-list').find('.row').empty()
   $('.pokemon-container').addClass('hidden')
+  $('#team-builder').addClass('hidden')
 }
 
 const showCrtTeam = () => {
@@ -130,6 +132,7 @@ const showCrtTeam = () => {
   $('#team-builder').find('.roster').empty()
   $('#pokemon-list').find('.row').empty()
   $('.pokemon-container').addClass('hidden')
+  $('#team-builder').addClass('hidden')
 }
 
 const getPokemonOnTeamSuccess = (data) => {
@@ -155,6 +158,7 @@ const deleteTeamSuccess = () => {
 const addPokemonToTeamSuccess = (data) => {
   console.log(data)
   const teamId = data.pokemon_team.team.id
+  $('#team-builder').removeClass('hidden')
   api.getPokemonOnTeam(teamId)
     .done(logic.loopCurrentRoster)
     .fail(failure)

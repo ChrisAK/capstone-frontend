@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://shrouded-cove-64987.herokuapp.com/'
+    production: 'https://shrouded-cove-64987.herokuapp.com'
   }
 }
 
