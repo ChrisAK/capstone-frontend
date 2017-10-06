@@ -1,6 +1,5 @@
 const ui = require('./ui')
 const api = require('./api')
-const logic = require('./logic')
 const getFormFields = require('../../lib/get-form-fields.js')
 
 const onSignUp = function (event) {

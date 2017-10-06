@@ -101,7 +101,6 @@ const loopCurrentRoster = function (data) {
 
 module.exports = {
   loopPokemon,
-  addPokemon,
   loopTeams,
   loopPokemonOnTeam,
   noPokemonError,
