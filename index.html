@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pokemon Team Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <header>
+    <img src="https://raw.githubusercontent.com/ChrisAK/capstone-frontend/master/assets/images/pokemon-banner.png" alt="pokemon banner">
+    <h1>Pokemon Team Planner</h1>
+  </header>
+  <!-- AUTH STUFF -->
+  <form id="sign-in" class="hidden">
+    <div class="form-group">
+      <h3 class="legend">Sign in!</h3>
+      <label>Email Address:</label>
+      <input type="email" name="credentials[email]" id="sign-in-email" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" name="credentials[password]" id="sign-in-password" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <input type="submit" name="submit" value="Sign in!" class="btn btn-default">
+      <input type="button" value="Need to Sign Up" class="btn btn-default" id="newUser">
+      <p class="hidden" id="sign-in-error">Email or Password Incorrect</p>
+    </div>
+  </form>
+
+  <form id="sign-out" class="hidden">
+    <div class="form-group">
+      <h3 class="legend"></h3>
+      <input type="submit" name="submit" value="Sign out!" class="btn btn-default">
+    </div>
+    <div class="form-group">
+      <input type="button" value="Change Password" class="btn btn-default" id="chngPwd">
+    </div>
+  </form>
+
+  <form id="sign-up" class="">
+    <div>
+      <div class="form-group">
+        <h3 class="legend">Sign up!</h3>
+        <label>Email Address:</label>
+        <input type="email" name="credentials[email]" id="sign-up-email" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" name="credentials[password]" id="sign-up-password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label>Confirm Password:</label>
+        <input type="password" name="credentials[password_confirmation]" id="sign-up-password-confirmation" placeholder="Confirm Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="submit" name="submit" value="Sign up!" class="btn btn-default">
+      <input type="button" value="Already a User" class="btn btn-default" id="oldUser">
+      <p class="hidden" id="sign-up-error">Email Taken or Passwords Don't Match</p>
+    </div>
+  </form>
+
+  <form id="change-password" class="hidden">
+    <div class="form-group">
+      <h3 class="legend">Change Password!</h3>
+      <label>Old Password:</label>
+      <input type="password" name="passwords[old]" value="" placeholder="Old Password" id="change-pswd-old">
+    </div>
+    <div class="form-group">
+      <label>New Password:</label>
+      <input type="password" name="passwords[new]" value="" placeholder="New Password" id="change-pswd-new">
+    </div>
+    <div class="form-group">
+      <input type="submit" name="submit" value="Change Password" class="btn btn-default">
+      <p class="hidden" id="change-password-success">Password Changed</p>
+      <p class="hidden" id="change-password-failure">Incorrect Info</p>
+    </div>
+  </form>
+
+  <!-- BUTTONS! -->
+  <form id="buttons-for-stuff" class="hidden">
+    <div class="form-group">
+      <input type="button" value="Create a Team" class="btn btn-default" id="crtTm">
+    </div>
+    <div class="form-group">
+      <input type="button" value="My Teams" class="btn btn-default" id="getTm">
+    </div>
+  </form>
+
+
+  <!-- CREATE TEAM -->
+  <form id="create-team" class="hidden">
+    <div class="form-group">
+      <h3 class="legend">Create Team Name</h3>
+      <label>Name:</label>
+      <input type="text" name="team[name]" value="" placeholder="Team Name" id="create-team-name">
+    </div>
+    <div class="form-group">
+      <input type="submit" name="submit" value="Create" class="btn btn-default">
+      <p class="hidden" id="create-team-failure">Team Already Exists</p>
+    </div>
+  </form>
+
+  <!-- POKEMON IN SELECTED TEAM! -->
+  <div id="pokemon-team-list">
+    <div class="pokemon-team-container">
+      <div class="container">
+        <ul class="pokemon-team-roster list-inline">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MY TEAMS! -->
+  <div id="teams-list">
+    <div class="teams-container">
+      <div class="container">
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM NAME HOLDER -->
+  <div id="team-name">
+  </div>
+
+<br>
+<br>
+  <!-- SHOW TEAM BUILDER -->
+  <div id="team-builder" class="hidden">
+    <div class="team-builder-container">
+      <div class="container">
+        <ul class="roster list-inline">
+
+        </ul>
+        <p class="hidden" id="too-many-pokemon">Only 6 pokemon allowed on a team!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIST POKEMON   -->
+  <div id="pokemon-list">
+    <div class="pokemon-container hidden">
+      <div class="container">
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</body>
+
+</html>
